@@ -1,6 +1,8 @@
 function reducer(state, action) {
     if (action.type === 'INCREMENT') {
         return state + 1;
+    } else if (action.type === 'DECREMENAT') {
+        return state - 1;
     } else {
         return state;
     }
