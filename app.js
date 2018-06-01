@@ -10,21 +10,31 @@ function reducer(state, action) {
 
 const incrementAction = { 
     type: 'INCREMENT',
-    amount: 5, 
+    amount: 3, 
 };
-
-console.log(reducer(0, incrementAction));
-console.log(reducer(1, incrementAction));
-console.log(reducer(5, incrementAction));
 
 const decrementAction = {
     type: 'DECREMENT',
-    amount: 11,
+    amount: 4,
 };
 
-console.log(reducer(100, decrementAction));
+function createStore(reducer) {
+    let state = 0;
 
-const unknownAction = { type: 'UNKNOWN' };
+    const getState = () => (state);
+    
+    const dispatch = (action) => {
+        state = reducer(state, action);
+    };
 
-console.log(reducer(5, unknownAction));
-console.log(reducer(8, unknownAction));
+    return {
+        getState,
+        dispatch,
+    };
+}
+
+const store = createStore(reducer);
+
+store.dispatch(incrementAction);
+console.log(store.getState());
+
